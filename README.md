@@ -1,8 +1,9 @@
-﻿#Requirejs学习笔记
+﻿# Requirejs学习笔记
 
     https://github.com/requirejs/requirejs
 
-**为什么要使用 `requirejs`** ? 
+**为什么要使用`requirejs`** ? 
+
 1.异步加载文件
 2.模块化开发
 一个文件一个模块，减少全局变量
@@ -43,7 +44,7 @@ define(['jquery'], function($){
       require(['./app/user'], function(user){
         def.resolve(user)
       })
-	  return def
+      return def
     }
   }
 })
@@ -63,10 +64,11 @@ require(['helper'], function(helper){
 **加载机制**: `requirejs`使用`head.appendChild()`将每一个依赖加载为一个`script`标签，加载即执行
 
 
-##简单配置
+## 简单配置
 ---
 
 **配置`baseUrl`**
+
 `paths`: 映射不放于baseUrl下的模块名
 ``` javascript
 requirejs.config({
@@ -85,18 +87,17 @@ requirejs.config({
 	  exports: 'Modernizr'
 	},
 	'bootstrap': ['jquery'],
-	'jquery-ui': ['css!./lib/jquery-ui-1.12.1/jquery-ui.css', 
-				  'css!./lib/jquery-ui-1.12.1/jquery-ui.theme.css']
+	'jquery-ui': ['css!./lib/jquery-ui-1.12.1/jquery-ui.css','css!./lib/jquery-ui-1.12.1/jquery-ui.theme.css']
 	}
 })
 ```
 
 `map`、`waitSeconds`、`urlArgs`等配置可查阅相关文档，在此不赘述
 
-##加载插件
+## 加载插件
 ---
 
-1. text插件
+**1. text插件**
 
         https://github.com/requirejs/text
     
@@ -135,7 +136,7 @@ requirejs.config({
     });
     ```
 
-2. css插件
+**2. css插件**
 
         https://github.com/guybedford/require-css
     
@@ -162,7 +163,7 @@ requirejs.config({
     })
     ```
 
-3. i18n插件
+**3. i18n插件**
 
         https://github.com/requirejs/i18n
         
@@ -208,7 +209,7 @@ requirejs.config({
     })
     ```
 
-##打包
+## 打包
 ---
 
 在开发阶段，随着 `js` 框架和库的引入，页面 `js` 的加载个数就越来越多，严重影响页面的响应速度，于是我们就需要对 `js` 和 `css` 打包
