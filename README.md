@@ -9,8 +9,7 @@
 一个文件一个模块，减少全局变量
 
 ## 基本使用
----
-    
+
 `define`: 定义模块
 
 方法一: 函数式定义
@@ -65,10 +64,8 @@ require(['helper'], function(helper){
 
 
 ## 简单配置
----
 
 **配置`baseUrl`**
-
 `paths`: 映射不放于baseUrl下的模块名
 ``` javascript
 requirejs.config({
@@ -95,7 +92,6 @@ requirejs.config({
 `map`、`waitSeconds`、`urlArgs`等配置可查阅相关文档，在此不赘述
 
 ## 加载插件
----
 
 **1. text插件**
 
@@ -103,38 +99,38 @@ requirejs.config({
     
     用于加载文本文件的requirejs插件，通过ajax请求来加载文本，有跨域访问的限制
 
-    ps: chrome浏览器若出现"Cross origin requests are only supported for protocol schemes: http, data,chrome-extension, https, chrome-extension-resource." 可在浏览器"属性-目标"后添加 --allow-file-access-from-files，注意前面要有一个空格
+ps: chrome浏览器若出现"Cross origin requests are only supported for protocol schemes: http, data,chrome-extension, https, chrome-extension-resource." 可在浏览器"属性-目标"后添加 --allow-file-access-from-files，注意前面要有一个空格
 
-    ``` javascript
-    require(['text!../../../user.html'], function(template){
-        $("#userinfo").html(template)
-    })
-    ```
+``` javascript
+require(['text!../../../user.html'], function(template){
+    $("#userinfo").html(template)
+})
+```
 
-    ``` javascript
-    requirejs.config({
-      config: {
-        text: {
-          onXhr: function (xhr, url) {
-            //Called after the XHR has been created and after the
-            //xhr.open() call, but before the xhr.send() call.
-            //Useful time to set headers.
-            //xhr: the xhr object
-            //url: the url that is being used with the xhr object.
-          },
-          createXhr: function () {
-            //Overrides the creation of the XHR object. Return an XHR
-            //object from this function.
-            //Available in text.js 2.0.1 or later.
-          },
-          onXhrComplete: function (xhr, url) {
-            //Called whenever an XHR has completed its work. Useful
-            //if browser-specific xhr cleanup needs to be done.
-          }
-        }
+``` javascript
+requirejs.config({
+  config: {
+    text: {
+      onXhr: function (xhr, url) {
+        //Called after the XHR has been created and after the
+        //xhr.open() call, but before the xhr.send() call.
+        //Useful time to set headers.
+        //xhr: the xhr object
+        //url: the url that is being used with the xhr object.
+      },
+      createXhr: function () {
+        //Overrides the creation of the XHR object. Return an XHR
+        //object from this function.
+        //Available in text.js 2.0.1 or later.
+      },
+      onXhrComplete: function (xhr, url) {
+        //Called whenever an XHR has completed its work. Useful
+        //if browser-specific xhr cleanup needs to be done.
       }
-    });
-    ```
+    }
+  }
+});
+```
 
 **2. css插件**
 
@@ -143,25 +139,25 @@ requirejs.config({
     用于加载样式的requirejs插件
     
     例如要使用jquery-ui
-    ``` javascript
-    requirejs.config({
-    	baseUrl: 'static/js',
-    	paths: {
-    		'jquery': './lib/jquery',
-    		'jquery-ui': './lib/jquery-ui-1.12.1/jquery-ui',
-    		'css': './lib/require/css'
-    	},
-    	shim: {
-    		'jquery-ui': ['css!./lib/jquery-ui-1.12.1/jquery-ui.css', 
-    					  'css!./lib/jquery-ui-1.12.1/jquery-ui.theme.css']
-    	},
-    	map: {
-    		'*': {
-    			'css': './lib/require/css'
-    		}
-    	}
-    })
-    ```
+``` javascript
+requirejs.config({
+	baseUrl: 'static/js',
+	paths: {
+		'jquery': './lib/jquery',
+		'jquery-ui': './lib/jquery-ui-1.12.1/jquery-ui',
+		'css': './lib/require/css'
+	},
+	shim: {
+		'jquery-ui': ['css!./lib/jquery-ui-1.12.1/jquery-ui.css', 
+					  'css!./lib/jquery-ui-1.12.1/jquery-ui.theme.css']
+	},
+	map: {
+		'*': {
+			'css': './lib/require/css'
+		}
+	}
+})
+```
 
 **3. i18n插件**
 
@@ -169,48 +165,47 @@ requirejs.config({
         
     用于支持国际化多语言
     
-    ``` javascript
-    //nls/messages.js
-    define({
-      'zh': true,
-      'en': true
-    })
-    //nls/zh/messages.js
-    define({
-      'edit': '编辑'
-    })
-    //nls/en/messages.js
-    define({
-      'edit': 'edit'
-    })
-    ```
+``` javascript
+//nls/messages.js
+define({
+  'zh': true,
+  'en': true
+})
+//nls/zh/messages.js
+define({
+  'edit': '编辑'
+})
+//nls/en/messages.js
+define({
+  'edit': 'edit'
+})
+```
     
-    ``` javascript
-    var language = document.cookie.match(/language=([^;]+)/)
-    var locale = 'zh'
-    if (language) {
-    	locale = language[1].split('_')[0]
-    }
-    requirejs.config({
-    	baseUrl: 'static/js',
-    	paths: {
-    		'jquery': './lib/jquery',
-    		'i18n': './lib/require/i18n'
-    	},
-    	config: {
-    		i18n: {
-    			locale: typeof locale !== 'undefined' ? locale : 'zh'
-    		}
-    	}
-    })
-    
-    require(['jquery','i18n!./nls/messages'], function($, i18n){
-    	$("#user").after("<button class='btn btn-default'>"+i18n.edit+"</button>")
-    })
-    ```
+``` javascript
+var language = document.cookie.match(/language=([^;]+)/)
+var locale = 'zh'
+if (language) {
+	locale = language[1].split('_')[0]
+}
+requirejs.config({
+	baseUrl: 'static/js',
+	paths: {
+		'jquery': './lib/jquery',
+		'i18n': './lib/require/i18n'
+	},
+	config: {
+		i18n: {
+			locale: typeof locale !== 'undefined' ? locale : 'zh'
+		}
+	}
+})
+
+require(['jquery','i18n!./nls/messages'], function($, i18n){
+	$("#user").after("<button class='btn btn-default'>"+i18n.edit+"</button>")
+})
+```
 
 ## 打包
----
 
 在开发阶段，随着 `js` 框架和库的引入，页面 `js` 的加载个数就越来越多，严重影响页面的响应速度，于是我们就需要对 `js` 和 `css` 打包
 
