@@ -5,8 +5,9 @@
 **为什么要使用`requirejs`** ? 
 
 1.异步加载文件
-2.模块化开发
-一个文件一个模块，减少全局变量
+
+2.模块化开发，一个文件一个模块，减少全局变量
+
 
 ## 基本使用
 
@@ -60,12 +61,14 @@ require(['helper'], function(helper){
 说明: `helper`代表定义的模块名，`function`内代表模块的实现
 
 `requirejs`是以一个相对于`baseUrl`的地址来加载所有的代码（三种方式：`html`、`data-main`、`baseUrl`）
+
 **加载机制**: `requirejs`使用`head.appendChild()`将每一个依赖加载为一个`script`标签，加载即执行
 
 
 ## 简单配置
 
 **配置`baseUrl`**
+
 `paths`: 映射不放于baseUrl下的模块名
 ``` javascript
 requirejs.config({
@@ -85,7 +88,7 @@ requirejs.config({
 	},
 	'bootstrap': ['jquery'],
 	'jquery-ui': ['css!./lib/jquery-ui-1.12.1/jquery-ui.css','css!./lib/jquery-ui-1.12.1/jquery-ui.theme.css']
-	}
+  }
 })
 ```
 
@@ -97,7 +100,7 @@ requirejs.config({
 
         https://github.com/requirejs/text
     
-    用于加载文本文件的requirejs插件，通过ajax请求来加载文本，有跨域访问的限制
+用于加载文本文件的requirejs插件，通过ajax请求来加载文本，有跨域访问的限制
 
 ps: chrome浏览器若出现"Cross origin requests are only supported for protocol schemes: http, data,chrome-extension, https, chrome-extension-resource." 可在浏览器"属性-目标"后添加 --allow-file-access-from-files，注意前面要有一个空格
 
@@ -136,9 +139,9 @@ requirejs.config({
 
         https://github.com/guybedford/require-css
     
-    用于加载样式的requirejs插件
+用于加载样式的requirejs插件
     
-    例如要使用jquery-ui
+例如要使用jquery-ui
 ``` javascript
 requirejs.config({
 	baseUrl: 'static/js',
@@ -163,7 +166,7 @@ requirejs.config({
 
         https://github.com/requirejs/i18n
         
-    用于支持国际化多语言
+用于支持国际化多语言
     
 ``` javascript
 //nls/messages.js
@@ -211,7 +214,7 @@ require(['jquery','i18n!./nls/messages'], function($, i18n){
 
     https://github.com/requirejs/requirejs
 
-使用其中的r.js
+使用其中的 `r.js`
 
 **1. 打包单个文件**
 
@@ -237,9 +240,13 @@ require(['jquery','i18n!./nls/messages'], function($, i18n){
 ```
 
 `appDir` 要打包的根目录
+
 `baserUrl` js文件所在的目录
+
 `dir` 打包后的输出目录
+
 `mainConfigFile` requirejs的配置文件
+
 `name` 要打包的模块
 
 **3. 打包多模块**
@@ -262,9 +269,13 @@ require(['jquery','i18n!./nls/messages'], function($, i18n){
 ```
 
 **参数设置**
+
 `include` 添加依赖
+
 `includeRequire` 不打包额外添加依赖
+
 `exclude` 移除依赖
+
 `excludeShallow` 浅移除依赖
 
 `uglify` 打包时压缩，默认 `none` 不被压缩
@@ -272,13 +283,14 @@ require(['jquery','i18n!./nls/messages'], function($, i18n){
 **4. 使用插件如何打包**
 
 - text插件
-    配置文件设置 `inlineText: false` 
+
+配置文件设置 `inlineText: false` 
 
 - css插件
     
         https://github.com/guybedford/require-css
     
-    引入 `css-builder` 和 `normalize`， 通过其将css文件和模块一起打包
+引入 `css-builder` 和 `normalize`， 通过其将css文件和模块一起打包
 
 **5. npm打包**
 
