@@ -1,0 +1,11 @@
+{
+  "name": "require-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.build.js",
+  "scripts": {
+    "package": "node r.js -o app.build.js"
+  },
+  "author": "carol",
+  "license": "ISC"
+}

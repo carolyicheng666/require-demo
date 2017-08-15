@@ -1,0 +1,1 @@
+define(["jquery","text!../../../user.html!strip"],function(e,r){return{getUser:function(){var r=e.Deferred();return require(["./app/user"],function(e){r.resolve(e)}),r},loadUser:function(){e("#userinfo").html(r)}}});
