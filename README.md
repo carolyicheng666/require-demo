@@ -304,3 +304,9 @@ require(['jquery','i18n!./nls/messages'], function($, i18n){
 ```
 
 `npm run package` 即可完成打包
+
+
+License
+---
+
+MIT
